@@ -9,5 +9,6 @@ export default function Home() {
   if (!user) {
     redirect("/login");
   }
-  return <></>;
+  return <>
+  </>;
 }

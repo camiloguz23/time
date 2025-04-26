@@ -1,8 +1,7 @@
-"use client"
-import { UiLink } from "@/lib/components/ui-link";
-import React, { useActionState } from "react";
-import { ActionLogin } from "../lib/action-auth";
+"use client";
 import { StateInitTypeAuth } from "@/lib/types/auth.type";
+import React, { useActionState } from "react";
+import { ActionRegister } from "../lib/action-auth";
 
 const StateInit: StateInitTypeAuth = {
   status: false,
@@ -14,14 +13,17 @@ const StateInit: StateInitTypeAuth = {
 };
 
 export default function Page() {
-  const [, action,ispending] = useActionState(ActionLogin, StateInit);
+  const [, action,ispending] = useActionState(ActionRegister, StateInit);
   return (
     <div className="flex items-center justify-center h-screen">
-      <form action={action} className="bg-white dark:bg-zinc-900 shadow-2xl rounded-2xl overflow-hidden border-4 border-blue-400 dark:border-blue-800">
+      <form className="bg-white dark:bg-zinc-900 shadow-2xl rounded-2xl overflow-hidden border-4 border-blue-400 dark:border-blue-800" action={action}>
         <div className="px-8 py-10 md:px-10">
           <h2 className="text-4xl font-extrabold text-center text-zinc-800 dark:text-white">
-            Ingresar
+            Registro
           </h2>
+          <p className="text-center text-zinc-600 dark:text-zinc-400 mt-3">
+            Registrese para continuar.
+          </p>
           <div className="mt-10">
             <div className="relative">
               <label
@@ -59,15 +61,9 @@ export default function Page() {
                 type="submit"
                 disabled={ispending}
               >
-                {ispending ? "Cargando..." : "Ingresar"}
+                {ispending ? "Cargando..." : "Registrarse"}
               </button>
             </div>
-          </div>
-        </div>
-        <div className="px-8 py-4 bg-blue-200 dark:bg-zinc-800">
-          <div className="text-sm text-blue-900 dark:text-blue-300 text-center">
-            {`¿No tienes una cuenta?`}
-            <UiLink namePath="Register" className="font-medium underline" href="/register"/>
           </div>
         </div>
       </form>
