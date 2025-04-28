@@ -1,0 +1,4 @@
+.btn_register_time {
+  width: clamp(200px, 70%, 900px);
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+}

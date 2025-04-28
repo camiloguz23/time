@@ -1,0 +1,9 @@
+.main_home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  margin-top: 40px;
+  gap: 20px;
+  padding: 10px;
+}
