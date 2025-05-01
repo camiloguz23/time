@@ -2,6 +2,7 @@
 
 import { StateInitTypeAuth } from "@/lib/types/auth.type";
 import { AuthService } from "./services/auth-services";
+import { redirect } from "next/navigation";
 
 export const ActionRegister = async (
   stateOld: StateInitTypeAuth,
@@ -86,6 +87,10 @@ export const ActionRegister = async (
     password,
   });
 
+  if (isRegister.status) {
+    redirect('/');
+  }
+
   return {
     ...isRegister,
     inputs: {
@@ -123,6 +128,10 @@ export const ActionLogin = async (
     email,
     password,
   });
+
+  if (isLogin.status) {
+    redirect('/');
+  }
 
   return {
     ...isLogin,
