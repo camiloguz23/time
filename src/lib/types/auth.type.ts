@@ -15,4 +15,9 @@ export type StateInitTypeAuth = {
         password:string;
         messageDB:string;
     }
+    inputs: {
+        email:string;
+        password:string;
+        confirmPassword:string;
+    }
 }
