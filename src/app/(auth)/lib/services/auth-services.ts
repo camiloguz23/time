@@ -38,6 +38,11 @@ export class AuthService {
         password: "",
         messageDB: error?.message ?? "",
       },
+      inputs:{
+        email:"",
+        password:"",
+        confirmPassword:""
+      }
     };
   }
 }
