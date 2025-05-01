@@ -17,9 +17,9 @@ export default function Layout({ children }: Props) {
     redirect("/login");
   }
   return (
-    <>
+    <main className="mt-26">
       <UiHeader />
       {children}
-    </>
+    </main>
   );
 }
