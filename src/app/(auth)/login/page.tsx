@@ -11,6 +11,11 @@ const StateInit: StateInitTypeAuth = {
     password: "",
     messageDB: "",
   },
+  inputs:{
+    email:"",
+    password:"",
+    confirmPassword:""
+  }
 };
 
 export default function Page() {
