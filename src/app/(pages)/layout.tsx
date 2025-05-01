@@ -1,3 +1,4 @@
+import { UiHeader } from "@/lib/components/header/ui-header";
 import { SupabaseServer } from "@/lib/supabase/server-supabase";
 import { redirect } from "next/navigation";
 import React, { use } from "react";
@@ -11,9 +12,14 @@ export default function Layout({ children }: Props) {
   const {
     data: { user },
   } = use(supabase.auth.getUser());
-
-  if (!user) {
+  console.log(user);
+  if (!user?.id) {
     redirect("/login");
   }
-  return <>{children}</>;
+  return (
+    <>
+      <UiHeader />
+      {children}
+    </>
+  );
 }

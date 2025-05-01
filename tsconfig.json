@@ -21,6 +21,8 @@
     "paths": {
       "@/components": ["./src/components"],
       "@/hooks": ["./src/lib/hooks"],
+      "@/actions": ["./src/lib/actions"],
+      "@/helpers": ["./src/lib/helpers"],
       "@/repository": ["./src/lib/repository"],
       "@/*": ["./src/*"]
     }

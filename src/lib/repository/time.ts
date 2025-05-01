@@ -7,8 +7,8 @@ export class TimeRepository {
     const { data, error } = await supabase
       .from("register")
       .select("*")
-      .eq("user_id", userId)
-      .order("created_at", { ascending: false });
+      .eq("user", userId)
+      .order("created_at", { ascending: true });
 
     if (error) {
       throw new Error(error.message);

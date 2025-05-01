@@ -45,7 +45,7 @@ export function UiBtnRegisterTime({ userId }: Props) {
 
   return (
     <Button className={style.btn_register_time} onClick={onRegisterTime}>
-      {"Iniciar tiempo"}
+      {storage.value ? "Detener tiempo" : "Iniciar tiempo"}
     </Button>
   );
 }

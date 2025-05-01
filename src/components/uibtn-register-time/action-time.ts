@@ -1,6 +1,7 @@
 "use server";
 
 import { TimeRepository } from "@/repository";
+import { revalidatePath } from "next/cache";
 
 export const actionTime = async ({minutes,month,userId,year}: {
   userId: string;
@@ -17,5 +18,8 @@ export const actionTime = async ({minutes,month,userId,year}: {
   });
 
   console.log("resp", respo.status);
+  if (respo.status === 201 || respo.status === 200 || respo.status === 204) {
+    revalidatePath("/");
+  }
   return respo.status === 201 || respo.status === 200 || respo.status === 204;
 };
