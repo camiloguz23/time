@@ -18,7 +18,7 @@ export default function Layout({ children }: Props) {
   }
   return (
     <main className="mt-26">
-      <UiHeader />
+      <UiHeader userId={user.id} />
       {children}
     </main>
   );

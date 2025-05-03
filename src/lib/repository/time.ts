@@ -57,4 +57,45 @@ export class TimeRepository {
       return insert;
     }
   }
+
+  static async AddHours({
+    userId,
+    year,
+    month,
+    minutes,
+  }: {
+    userId: string;
+    year: number;
+    month: number;
+    minutes: number;
+  }) {
+    const supabase = await SupabaseServer();
+
+    const { data: monthDB } = await supabase
+      .from("register")
+      .select("*")
+      .eq("user", userId)
+      .eq("year", year)
+      .eq("month", month)
+      .single();
+
+    if (monthDB?.minutes) {
+      const updDate = await supabase
+        .from("register")
+        .update({
+          minutes: monthDB.minutes + minutes,
+        })
+        .eq("id", monthDB.id);
+      return updDate;
+    } else {
+      const insert = await supabase.from("register").insert({
+        user: userId,
+        minutes,
+        year,
+        month,
+      });
+
+      return insert;
+    }
+  }
 }

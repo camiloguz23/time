@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     siteName: "Time",
     images: [
       {
-        url: "https://time.com/og-image.jpg",
+        url: "https://ipeoutbcqqvvuovfxeau.supabase.co/storage/v1/object/public/img//logo.png",
         width: 1200,
         height: 630,
         alt: "Time - Gestión de Tiempo",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Time - Gestión de Tiempo",
     description: "Sistema de gestión de tiempo para empresas y equipos. Rastrea, analiza y optimiza el uso del tiempo en tu organización.",
-    images: ["https://time.com/og-image.jpg"],
+    images: ["https://ipeoutbcqqvvuovfxeau.supabase.co/storage/v1/object/public/img//logo.png"],
   },
 };
 
