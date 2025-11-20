@@ -20,6 +20,19 @@ export class AuthService {
     };
   }
 
+  static async recoverPassword(email: string) {
+    const supabaseDB = await SupabaseServer();
+
+    const { error } = await supabaseDB.auth.resetPasswordForEmail(email, {
+      redirectTo: "http://localhost:3000/reset-password",
+    });
+
+    return {
+      status: !error?.message,
+      message: error?.message ?? "Se ha enviado un correo de recuperación",
+    };
+  }
+
   static async register(info: Register): Promise<StateInitTypeAuth> {
     const supabaseDB = await SupabaseServer();
 

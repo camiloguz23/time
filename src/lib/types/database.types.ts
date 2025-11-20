@@ -52,6 +52,7 @@ export type Database = {
       register: {
         Row: {
           created_at: string
+          favorite: boolean | null
           id: number
           minutes: number | null
           month: number | null
@@ -60,6 +61,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          favorite?: boolean | null
           id?: number
           minutes?: number | null
           month?: number | null
@@ -68,6 +70,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          favorite?: boolean | null
           id?: number
           minutes?: number | null
           month?: number | null

@@ -21,3 +21,7 @@ export type StateInitTypeAuth = {
         confirmPassword:string;
     }
 }
+
+export type PasswordRecovery = {
+    email: string;
+}
