@@ -14,11 +14,11 @@ export default function Layout({ children }: Props) {
   } = use(supabase.auth.getUser());
   console.log(user);
   if (!user?.id) {
-    redirect("/login");
+    //redirect("/login");
   }
   return (
     <main className="mt-26">
-      <UiHeader userId={user.id} />
+      {/*<UiHeader userId={user?.id ?? ""} />*/}
       {children}
     </main>
   );

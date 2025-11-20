@@ -1,0 +1,1 @@
+ALTER TABLE "public"."register" ADD COLUMN "favorite" boolean;

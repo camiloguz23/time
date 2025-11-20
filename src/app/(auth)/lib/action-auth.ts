@@ -1,8 +1,9 @@
 "use server";
 
-import { StateInitTypeAuth } from "@/lib/types/auth.type";
+import { PasswordRecovery, StateInitTypeAuth } from "@/lib/types/auth.type";
 import { AuthService } from "./services/auth-services";
 import { redirect } from "next/navigation";
+import { SupabaseServer } from "@/lib/supabase/server-supabase";
 
 export const ActionRegister = async (
   stateOld: StateInitTypeAuth,
@@ -31,7 +32,8 @@ export const ActionRegister = async (
   }
 
   // Validación de contraseña
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   if (!password) {
     return {
       status: false,
@@ -54,7 +56,8 @@ export const ActionRegister = async (
       status: false,
       message: {
         email: "",
-        password: "La contraseña debe tener al menos 8 caracteres, incluir mayúsculas, minúsculas, números y caracteres especiales (@$!%*?&)",
+        password:
+          "La contraseña debe tener al menos 8 caracteres, incluir mayúsculas, minúsculas, números y caracteres especiales (@$!%*?&)",
         messageDB: "",
       },
       inputs: {
@@ -88,7 +91,7 @@ export const ActionRegister = async (
   });
 
   if (isRegister.status) {
-    redirect('/');
+    redirect("/");
   }
 
   return {
@@ -130,7 +133,7 @@ export const ActionLogin = async (
   });
 
   if (isLogin.status) {
-    redirect('/');
+    redirect("/");
   }
 
   return {
@@ -140,5 +143,22 @@ export const ActionLogin = async (
       password: isLogin.status ? "" : password,
       confirmPassword: "",
     },
+  };
+};
+
+export const ActionRecoverPassword = async ({ email }: PasswordRecovery) => {
+  const isRecoverPassword = await AuthService.recoverPassword(email);
+  return isRecoverPassword;
+};
+
+export const ActionResetPassword = async ({ code }: { code: string }) => {
+  const supabase = await SupabaseServer();
+  const { error } = await supabase.auth.updateUser({
+    password: code,
+  });
+
+  return {
+    status: !error?.message,
+    message: error?.message ?? "",
   };
 };

@@ -85,6 +85,20 @@ export default function Page() {
             </button>
           </div>
 
+          {/* Enlace a Recuperar Contraseña */}
+          <div className="mt-4 text-center">
+            <p className="text-sm text-zinc-600 dark:text-zinc-300">
+              ¿Olvidaste tu contraseña?
+              <UiLink
+                namePath="RecoverPassword"
+                className="ml-1 font-medium text-gray-900 dark:text-white hover:text-gray-700 dark:hover:text-zinc-200 transition-colors duration-200"
+                href="/recover-password"
+              >
+                Recuperar contraseña
+              </UiLink>
+            </p>
+          </div>
+
           {/* Enlace a Registro */}
           <div className="mt-6 text-center">
             <p className="text-sm text-zinc-600 dark:text-zinc-300">
