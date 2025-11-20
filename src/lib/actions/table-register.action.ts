@@ -20,7 +20,6 @@ export const addHoursAction = async ({
   month: number;
   minutes: number;
 }) => {
-  console.log("minutes", minutes);
   const respo = await TimeRepository.AddHours({ userId, year, month, minutes });
   if (respo.status === 201 || respo.status === 200 || respo.status === 204) {
     revalidatePath("/");

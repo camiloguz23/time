@@ -41,7 +41,7 @@ export function UiBtnRegisterTime({ userId }: Props) {
 
   useEffect(() => {
     storage.getStorage("time");
-  }, []);
+  }, [storage]);
 
   return (
     <Button className={style.btn_register_time} onClick={onRegisterTime}>
@@ -49,4 +49,3 @@ export function UiBtnRegisterTime({ userId }: Props) {
     </Button>
   );
 }
-

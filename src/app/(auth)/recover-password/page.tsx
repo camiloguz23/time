@@ -1,29 +1,27 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader2 } from "lucide-react";
-import { ActionRecoverPassword } from '../lib/action-auth';
+import { ActionRecoverPassword } from "../lib/action-auth";
 
 export default function RecoverPasswordPage() {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setMessage('');
+    setMessage("");
 
     try {
-      const response = await ActionRecoverPassword({email});
-      console.log(response);
+      const response = await ActionRecoverPassword({ email });
       setMessage(response.message);
-    } catch (error) {
-      console.log(error);
-      setMessage('Error al enviar el correo de recuperación');
+    } catch {
+      setMessage("Error al enviar el correo de recuperación");
     } finally {
       setLoading(false);
     }
@@ -37,7 +35,8 @@ export default function RecoverPasswordPage() {
             Recuperar contraseña
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Ingresa tu correo electrónico y te enviaremos un enlace para recuperar tu contraseña
+            Ingresa tu correo electrónico y te enviaremos un enlace para
+            recuperar tu contraseña
           </p>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -58,9 +57,11 @@ export default function RecoverPasswordPage() {
 
           <div>
             {message && (
-              <p className={`mt-2 text-sm ${
-                message.includes('Error') ? 'text-red-600' : 'text-green-600'
-              }`}>
+              <p
+                className={`mt-2 text-sm ${
+                  message.includes("Error") ? "text-red-600" : "text-green-600"
+                }`}
+              >
                 {message}
               </p>
             )}
@@ -75,7 +76,7 @@ export default function RecoverPasswordPage() {
                   Enviando correo...
                 </>
               ) : (
-                'Enviar correo'
+                "Enviar correo"
               )}
             </Button>
           </div>

@@ -14,27 +14,31 @@ export function ResetPassword({ code }: Props) {
   const [password, setPassword] = useState("");
   useEffect(() => {
     const supabase = SupabaseClient();
-    console.log("code pagina", code);
     if (!code) {
       return;
     }
 
-    supabase.auth.verifyOtp({ type: 'recovery', token:code,email:"jeysonkmguzman@gmail.com" }).then(({error }) => {
-      if (error) {
-        console.log("Error al intercambiar el código:", error.message);
-      } else {
-        setSessionReady(true);
-      }
-    });
-  }, []);
+    supabase.auth
+      .verifyOtp({
+        type: "recovery",
+        token: code,
+        email: "jeysonkmguzman@gmail.com",
+      })
+      .then(({ error }) => {
+        if (!error) {
+          setSessionReady(true);
+        }
+      });
+  }, [code]);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(code);
     const supabase = SupabaseClient();
     const { error } = await supabase.auth.updateUser({
       password: password,
     });
-    console.log(error);
+    if (!error) {
+      setPassword("");
+    }
   };
   return (
     <div className="flex items-center justify-center h-screen flex-col gap-4">
